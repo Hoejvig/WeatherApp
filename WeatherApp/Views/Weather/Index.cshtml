@@ -1,29 +1,116 @@
-@model WebApplication.Models.WeatherViewModel
+@model WebApplication.Models.WeatherDashboardViewModel
+@using System.Text.Json
 
 @{
     Layout = null;
+
+    var labels = Model.History.Select(x => x.Timestamp.ToString("HH:mm")).ToList();
+    var temperatures = Model.History.Select(x => x.Temperature).ToList();
+    var humidities = Model.History.Select(x => x.Humidity).ToList();
 }
 
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Weather App</title>
-
+    <meta charset="utf-8" />
+    <title>Weather Dashboard</title>
     <link rel="stylesheet" href="~/css/site.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
-
 <body>
+    <div class="page">
+        <h1>Weather Dashboard</h1>
 
-    <div class="card">
-        <h2>@Model.City</h2>
+        @if (Model.Latest == null)
+        {
+            <p>No weather data yet.</p>
+        }
+        else
+        {
+            <div class="latest-card">
+                <div><strong>Time:</strong> <span id="latestTime">@Model.Latest.Timestamp.ToString("HH:mm")</span></div>
+                <div><strong>Temperature:</strong> <span id="latestTemperature">@Model.Latest.Temperature</span> °C</div>
+                <div><strong>Humidity:</strong> <span id="latestHumidity">@Model.Latest.Humidity</span> %</div>
+                <div><strong>Status:</strong> @Model.Latest.Description</div>
+            </div>
 
-        <img src="@Model.IconUrl" />
-
-        <h1>@Model.Temperature °C</h1>
-
-        <p>@Model.Description</p>
-        <p>Humidity: @Model.Humidity %</p>
+            <div class="chart-card">
+                <canvas id="weatherChart"></canvas>
+            </div>
+        }
     </div>
 
+    <script>
+        const labels = @Html.Raw(JsonSerializer.Serialize(labels));
+        const temperatureData = @Html.Raw(JsonSerializer.Serialize(temperatures));
+        const humidityData = @Html.Raw(JsonSerializer.Serialize(humidities));
+
+        const ctx = document.getElementById('weatherChart');
+
+        const chart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: labels,
+                datasets: [
+                    {
+                        label: 'Temperature (°C)',
+                        data: temperatureData,
+                        borderWidth: 2,
+                        tension: 0.3
+                    },
+                    {
+                        label: 'Humidity (%)',
+                        data: humidityData,
+                        borderWidth: 2,
+                        tension: 0.3
+                    }
+                ]
+            },
+            options: {
+                responsive: true,
+                animation: false,
+                scales: {
+                    x: {
+                        title: {
+                            display: true,
+                            text: 'Time'
+                        }
+                    },
+                    y: {
+                        beginAtZero: false
+                    }
+                }
+            }
+        });
+
+        async function refreshLatestPoint() {
+            const response = await fetch('/Weather/LatestPoint');
+            const latest = await response.json();
+
+            if (!latest.time) return;
+
+            document.getElementById('latestTime').textContent = latest.time;
+            document.getElementById('latestTemperature').textContent = latest.temperature;
+            document.getElementById('latestHumidity').textContent = latest.humidity;
+
+            const lastLabel = chart.data.labels[chart.data.labels.length - 1];
+
+            if (latest.time !== lastLabel) {
+                chart.data.labels.push(latest.time);
+                chart.data.datasets[0].data.push(latest.temperature);
+                chart.data.datasets[1].data.push(latest.humidity);
+
+                if (chart.data.labels.length > 200) {
+                    chart.data.labels.shift();
+                    chart.data.datasets[0].data.shift();
+                    chart.data.datasets[1].data.shift();
+                }
+
+                chart.update();
+            }
+        }
+
+        setInterval(refreshLatestPoint, 30000);
+    </script>
 </body>
 </html>

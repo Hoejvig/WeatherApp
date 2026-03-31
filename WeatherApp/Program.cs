@@ -1,12 +1,19 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using WebApplication.Services;
+using WebApplication.Data;
+
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddHttpClient<APIConnector>();
+builder.Services.AddDbContext<WeatherDbContext>(options =>
+    options.UseSqlite("Data Source=weather.db"));
+
+builder.Services.AddHostedService<WeatherPollingService>();
 
 var app = builder.Build();
 
@@ -28,5 +35,11 @@ app.UseAuthorization();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Weather}/{action=Index}/{id?}");
+
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<WeatherDbContext>();
+    db.Database.EnsureCreated();
+}
 
 app.Run();

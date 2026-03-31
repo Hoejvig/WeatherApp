@@ -6,15 +6,17 @@ namespace WebApplication.Services
     public class APIConnector
     {
         private readonly HttpClient _httpClient;
+        private readonly IConfiguration _configuration;
 
-        public APIConnector(HttpClient httpClient)
+        public APIConnector(HttpClient httpClient, IConfiguration configuration)
         {
             _httpClient = httpClient;
+            _configuration = configuration;
         }
 
         public async Task<WeatherViewModel?> GetWeatherAsync(string city)
         {
-            string apiKey = "7a300817089e89fdb259c0c1d7f4c49a";
+            string apiKey = _configuration["WeatherStack:ApiKey"] ?? throw new InvalidOperationException("API key not configured.");
             string url = $"http://api.weatherstack.com/current?access_key={apiKey}&query={city}";
 
             var response = await _httpClient.GetAsync(url);
@@ -31,9 +33,11 @@ namespace WebApplication.Services
             }
 
             string locationName = root.GetProperty("location").GetProperty("name").GetString() ?? city;
-
             double temperature = current.GetProperty("temperature").GetDouble();
             int humidity = current.GetProperty("humidity").GetInt32();
+            double? windSpeed = null;
+            if (current.TryGetProperty("wind_speed", out var wind))
+                windSpeed = wind.GetDouble();
 
             string description = "";
             if (current.TryGetProperty("weather_descriptions", out var descriptions) &&
@@ -42,20 +46,13 @@ namespace WebApplication.Services
                 description = descriptions[0].GetString() ?? "";
             }
 
-            string iconUrl = "";
-            if (current.TryGetProperty("weather_icons", out var icons) &&
-                icons.GetArrayLength() > 0)
-            {
-                iconUrl = icons[0].GetString() ?? "";
-            }
-
-            return new WeatherViewModel
+            return new WeatherReading
             {
                 City = locationName,
                 Temperature = temperature,
                 Humidity = humidity,
-                Description = description,
-                IconUrl = iconUrl
+                WindSpeed = windSpeed,
+                Description = description
             };
         }
     }

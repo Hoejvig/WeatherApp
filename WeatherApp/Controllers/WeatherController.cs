@@ -1,28 +1,54 @@
 using Microsoft.AspNetCore.Mvc;
-using WebApplication.Services;
+using Microsoft.EntityFrameworkCore;
+using WebApplication.Data;
+using WebApplication.Models;
 
 namespace WebApplication.Controllers
 {
     public class WeatherController : Controller
     {
-        private readonly APIConnector _apiConnector;
+        private readonly WeatherDbContext _db;
 
-        public WeatherController(APIConnector apiConnector)
+        public WeatherController(WeatherDbContext db)
         {
-            _apiConnector = apiConnector;
+            _db = db;
         }
 
         public async Task<IActionResult> Index()
         {
-            var model = await _apiConnector.GetWeatherAsync("Copenhagen");
+            var history = await _db.WeatherSnapshots
+                .OrderBy(x => x.Timestamp)
+                .Take(200)
+                .ToListAsync();
 
-            if (model == null)
+            var latest = history.LastOrDefault();
+
+            var model = new WeatherDashboardViewModel
             {
-                ViewBag.Error = "Could not load weather data.";
-                return View();
-            }
+                Latest = latest,
+                History = history
+            };
 
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> LatestPoint()
+        {
+            var latest = await _db.WeatherSnapshots
+                .OrderByDescending(x => x.Timestamp)
+                .Select(x => new
+                {
+                    time = x.Timestamp.ToString("HH:mm"),
+                    temperature = x.Temperature,
+                    humidity = x.Humidity
+                })
+                .FirstOrDefaultAsync();
+
+            if (latest == null)
+                return Json(new { });
+
+            return Json(latest);
         }
     }
 }
