@@ -29,3 +29,4 @@ C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefo
 C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WeatherApp.pdb
 C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WeatherApp.genruntimeconfig.cache
 C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\ref\WeatherApp.dll
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WeatherApp.csproj.AssemblyReference.cache

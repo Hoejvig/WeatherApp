@@ -14,7 +14,7 @@ namespace WeatherApp.Services
             _configuration = configuration;
         }
 
-        public async Task<WeatherViewModel?> GetWeatherAsync(string city)
+        public async Task<WeatherReading?> GetWeatherAsync(string city)
         {
             string apiKey = _configuration["WeatherStack:ApiKey"] ?? throw new InvalidOperationException("API key not configured.");
             string url = $"http://api.weatherstack.com/current?access_key={apiKey}&query={city}";
