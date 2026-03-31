@@ -1,0 +1,29 @@
+@model WebApplication.Models.WeatherViewModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather App</title>
+
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+
+<body>
+
+    <div class="card">
+        <h2>@Model.City</h2>
+
+        <img src="@Model.IconUrl" />
+
+        <h1>@Model.Temperature °C</h1>
+
+        <p>@Model.Description</p>
+        <p>Humidity: @Model.Humidity %</p>
+    </div>
+
+</body>
+</html>

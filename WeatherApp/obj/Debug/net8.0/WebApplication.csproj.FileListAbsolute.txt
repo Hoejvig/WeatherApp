@@ -6,3 +6,11 @@ C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefo
 C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WebApplication\obj\Debug\net8.0\WebApplication.RazorAssemblyInfo.cache
 C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WebApplication\obj\Debug\net8.0\WebApplication.RazorAssemblyInfo.cs
 C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WebApplication\obj\Debug\net8.0\WebApplication.sourcelink.json
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WebApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WebApplication.AssemblyInfoInputs.cache
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WebApplication.AssemblyInfo.cs
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WebApplication.csproj.CoreCompileInputs.cache
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WebApplication.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WebApplication.RazorAssemblyInfo.cache
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WebApplication.RazorAssemblyInfo.cs
+C:\Users\victo\OneDrive\Desktop\4. Semester\Cyber-fysiske systemer (CFS)\Portefolio\WeatherApp\WeatherApp\obj\Debug\net8.0\WebApplication.sourcelink.json
