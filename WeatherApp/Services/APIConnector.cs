@@ -1,7 +1,7 @@
 using System.Text.Json;
-using WebApplication.Models;
+using WeatherApp.Models;
 
-namespace WebApplication.Services
+namespace WeatherApp.Services
 {
     public class APIConnector
     {

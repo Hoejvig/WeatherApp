@@ -5,7 +5,7 @@ using WeatherApp.Services;
 using WeatherApp.Data;
 
 
-var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);
+var builder = Microsoft.AspNetCore.Builder.WeatherApp.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

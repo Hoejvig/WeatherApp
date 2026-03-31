@@ -1,3 +1,3 @@
 {
-    "dotnet.defaultSolution": "WebApplication.sln"
+    "dotnet.defaultSolution": "WeatherApp.sln"
 }
