@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using WebApplication.Data;
-using WebApplication.Models;
+using WeatherApp.Data;
+using WeatherApp.Models;
 
-namespace WebApplication.Controllers
+namespace WeatherApp.Controllers
 {
     public class WeatherController : Controller
     {

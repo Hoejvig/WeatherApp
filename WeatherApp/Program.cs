@@ -1,8 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using WebApplication.Services;
-using WebApplication.Data;
+using WeatherApp.Services;
+using WeatherApp.Data;
 
 
 var builder = Microsoft.AspNetCore.Builder.WebApplication.CreateBuilder(args);

@@ -1,8 +1,7 @@
-using Microsoft.EntityFrameworkCore;
-using WebApplication.Data;
-using WebApplication.Models;
+using WeatherApp.Data;
+using WeatherApp.Models;
 
-namespace WebApplication.Services
+namespace WeatherApp.Services
 {
     public class WeatherPollingService : BackgroundService
     {
@@ -17,7 +16,7 @@ namespace WebApplication.Services
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            using var timer = new PeriodicTimer(TimeSpan.FromMinutes(5));
+            using var timer = new PeriodicTimer(TimeSpan.FromMinutes(1));
 
             await SaveSnapshotAsync(stoppingToken);
 

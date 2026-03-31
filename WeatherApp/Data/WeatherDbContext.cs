@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using WebApplication.Models;
+using WeatherApp.Models;
 
-namespace WebApplication.Data
+namespace WeatherApp.Data
 {
     public class WeatherDbContext : DbContext
     {

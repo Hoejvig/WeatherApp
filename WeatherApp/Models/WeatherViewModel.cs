@@ -1,4 +1,4 @@
-namespace WebApplication.Models
+namespace WeatherApp.Models
 {
     public class WeatherViewModel
     {
