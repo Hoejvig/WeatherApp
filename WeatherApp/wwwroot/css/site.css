@@ -56,3 +56,14 @@ canvas {
     width: 100% !important;
     height: 400px !important;
 }
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.city {
+    font-size: 18px;
+    color: #6b7280;
+}

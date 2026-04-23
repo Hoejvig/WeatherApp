@@ -13,6 +13,7 @@ namespace WeatherApp.Models
         public int Humidity { get; set; }
 
         public double? WindSpeed { get; set; }
+        public double? Precipitation { get; set; }
 
         public string Description { get; set; } = "";
     }

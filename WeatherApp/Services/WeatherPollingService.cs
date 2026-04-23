@@ -47,6 +47,7 @@ namespace WeatherApp.Services
                     Temperature = reading.Temperature,
                     Humidity = reading.Humidity,
                     WindSpeed = reading.WindSpeed,
+                    Precipitation = reading.Precipitation,
                     Description = reading.Description
                 };
 

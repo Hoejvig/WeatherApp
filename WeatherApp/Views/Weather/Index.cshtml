@@ -6,7 +6,7 @@
 
     var labels = Model.History.Select(x => x.Timestamp.ToString("HH:mm")).ToList();
     var temperatures = Model.History.Select(x => x.Temperature).ToList();
-    var humidities = Model.History.Select(x => x.Humidity).ToList();
+    var precipitations = Model.History.Select(x => x.Precipitation).ToList();
 }
 
 <!DOCTYPE html>
@@ -20,6 +20,7 @@
 <body>
     <div class="page">
         <h1>Weather Dashboard</h1>
+        <div class="city">@Model.Latest?.City</div>
 
         @if (Model.Latest == null)
         {
@@ -30,7 +31,7 @@
             <div class="latest-card">
                 <div><strong>Time:</strong> <span id="latestTime">@Model.Latest.Timestamp.ToString("HH:mm")</span></div>
                 <div><strong>Temperature:</strong> <span id="latestTemperature">@Model.Latest.Temperature</span> °C</div>
-                <div><strong>Humidity:</strong> <span id="latestHumidity">@Model.Latest.Humidity</span> %</div>
+                <div><strong>Precipitation:</strong> <span id="latestPrecipitation">@Model.Latest.Precipitation</span> mm</div>
                 <div><strong>Status:</strong> @Model.Latest.Description</div>
             </div>
 
@@ -43,7 +44,7 @@
     <script>
         const labels = @Html.Raw(JsonSerializer.Serialize(labels));
         const temperatureData = @Html.Raw(JsonSerializer.Serialize(temperatures));
-        const humidityData = @Html.Raw(JsonSerializer.Serialize(humidities));
+        const precipitationData = @Html.Raw(JsonSerializer.Serialize(precipitations));
 
         const ctx = document.getElementById('weatherChart');
 
@@ -55,14 +56,18 @@
                     {
                         label: 'Temperature (°C)',
                         data: temperatureData,
+                        borderColor: 'red',
+                        backgroundColor: 'transparent',
+                        tension: 0.45,
                         borderWidth: 2,
-                        tension: 0.3
                     },
                     {
-                        label: 'Humidity (%)',
-                        data: humidityData,
+                        label: 'Precipitation (mm)',
+                        data: precipitationData,
+                        borderColor: 'blue',
+                        backgroundColor: 'transparent',
+                        tension: 0.45,
                         borderWidth: 2,
-                        tension: 0.3
                     }
                 ]
             },
@@ -91,14 +96,14 @@
 
             document.getElementById('latestTime').textContent = latest.time;
             document.getElementById('latestTemperature').textContent = latest.temperature;
-            document.getElementById('latestHumidity').textContent = latest.humidity;
+            document.getElementById('latestPrecipitation').textContent = latest.precipitation;
 
             const lastLabel = chart.data.labels[chart.data.labels.length - 1];
 
             if (latest.time !== lastLabel) {
                 chart.data.labels.push(latest.time);
                 chart.data.datasets[0].data.push(latest.temperature);
-                chart.data.datasets[1].data.push(latest.humidity);
+                chart.data.datasets[1].data.push(latest.precipitation);
 
                 if (chart.data.labels.length > 200) {
                     chart.data.labels.shift();

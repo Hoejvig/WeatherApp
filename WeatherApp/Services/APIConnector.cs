@@ -38,6 +38,9 @@ namespace WeatherApp.Services
             double? windSpeed = null;
             if (current.TryGetProperty("wind_speed", out var wind))
                 windSpeed = wind.GetDouble();
+            double? precipitation = null;
+            if (current.TryGetProperty("precip", out var precip))
+                precipitation = precip.GetDouble();
 
             string description = "";
             if (current.TryGetProperty("weather_descriptions", out var descriptions) &&
@@ -52,6 +55,7 @@ namespace WeatherApp.Services
                 Temperature = temperature,
                 Humidity = humidity,
                 WindSpeed = windSpeed,
+                Precipitation = precipitation,
                 Description = description
             };
         }
