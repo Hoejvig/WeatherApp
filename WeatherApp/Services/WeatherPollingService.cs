@@ -16,7 +16,7 @@ namespace WeatherApp.Services
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            using var timer = new PeriodicTimer(TimeSpan.FromMinutes(1));
+            using var timer = new PeriodicTimer(TimeSpan.FromSeconds(10));
 
             await SaveSnapshotAsync(stoppingToken);
 
