@@ -41,7 +41,7 @@ namespace WeatherApp.Controllers
                 {
                     time = x.Timestamp.ToString("HH:mm"),
                     temperature = x.Temperature,
-                    humidity = x.Humidity
+                    precipitation = x.Precipitation
                 })
                 .FirstOrDefaultAsync();
 

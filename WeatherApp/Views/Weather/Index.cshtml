@@ -19,9 +19,8 @@
 </head>
 <body>
     <div class="page">
-        <h1>Weather Dashboard</h1>
-        <div class="city">@Model.Latest?.City</div>
-
+        <h1>Weather Dashboard - @Model.Latest?.City</h1>
+        
         @if (Model.Latest == null)
         {
             <p>No weather data yet.</p>
