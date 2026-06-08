@@ -28,7 +28,7 @@
         else
         {
             <div class="latest-card">
-                <div><strong>Time:</strong> <span id="latestTime">@Model.Latest.Timestamp.ToString("HH:mm")</span></div>
+                <div><strong>Time:</strong> <span id="latestTime">@Model.Latest.Timestamp.ToString("HH:mm:ss")</span></div>
                 <div><strong>Temperature:</strong> <span id="latestTemperature">@Model.Latest.Temperature</span> °C</div>
                 <div><strong>Precipitation:</strong> <span id="latestPrecipitation">@Model.Latest.Precipitation</span> mm</div>
                 <div><strong>Status:</strong> @Model.Latest.Description</div>

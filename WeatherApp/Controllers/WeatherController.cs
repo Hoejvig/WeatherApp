@@ -39,7 +39,7 @@ namespace WeatherApp.Controllers
                 .OrderByDescending(x => x.Timestamp)
                 .Select(x => new
                 {
-                    time = x.Timestamp.ToString("HH:mm"),
+                    time = x.Timestamp.ToString("HH:mm:ss"),
                     temperature = x.Temperature,
                     precipitation = x.Precipitation
                 })
