@@ -2,3 +2,5 @@ Before the projekt was approved by my teacher i had made added other datapoints 
 
 The WeatherStack API does not suply data for my hometown, so the monitored city will be Copenhagen
 
+The Application will run when executing dotnet run from the WeatherApp/WeatherApp directory.
+The new data will be loaded when the page is refreshed.
